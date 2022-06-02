@@ -26,7 +26,15 @@ function Todo() {
     { key: getKey(), text: '明日の準備をする', done: false },
     /* テストコード 終了 */
   ]);
-  const handleClick = () => putItems({key: getKey(), text: '日本語の宿題1', done: false})
+  const handleCheck = checked => {
+    const newItems = items.map(item => {
+      if (item.key === checked.key) {
+        item.done = !item.done;
+      }
+      return item;
+    });
+    putItems(newItems);
+  };
 
   return (
     <div className="panel">
@@ -35,6 +43,7 @@ function Todo() {
       </div>
       {items.map(item => (
         <TodoItem
+          onCheck = {handleCheck}
           key={item.key}
           item={item}
         />  
