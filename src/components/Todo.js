@@ -26,6 +26,7 @@ function Todo() {
     { key: getKey(), text: '明日の準備をする', done: false },
     /* テストコード 終了 */
   ]);
+  const handleClick = () => putItems({key: getKey(), text: '日本語の宿題1', done: false})
 
   return (
     <div className="panel">
@@ -33,10 +34,10 @@ function Todo() {
         ITSS ToDoアプリ
       </div>
       {items.map(item => (
-        <label className="panel-block">
-            <input type="checkbox" />
-            {item.text}
-        </label>
+        <TodoItem
+          key={item.key}
+          item={item}
+        />  
       ))}
       <div className="panel-block">
         {items.length} items
